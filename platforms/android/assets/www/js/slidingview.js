@@ -10,7 +10,7 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVE
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-//document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 
 var SlidingView = function( sidebarId, bodyId ) {
 	
@@ -162,15 +162,29 @@ SlidingView.prototype.snapToPosition = function() {
 	//console.log( currentPosition, halfWidth, targetX );
 
 	if ( currentPosition != targetX ) {
-	
-		this.body.stop(true, false).animate({
-				left:targetX,
-				avoidTransforms:false,
-				useTranslate3d: true
-			}, 100);
-			
-	    this.sidebar.trigger( "slidingViewProgress", { current:targetX, max:this.sidebarWidth } );
+	    this.slideView(targetX);
 	}
+}
+
+SlidingView.prototype.slideView = function(targetX) {
+    this.body.stop(true, false).animate({
+        left:targetX,
+        avoidTransforms:false,
+        useTranslate3d: true
+    }, 100);
+
+    this.sidebar.trigger( "slidingViewProgress", { current:targetX, max:this.sidebarWidth } );
+}
+
+SlidingView.prototype.close = function() {
+    this.bodyOffset = 0;
+    this.slideView(0);
+}
+
+SlidingView.prototype.open = function() {
+    if(this.bodyOffset == this.sidebarWidth) return;
+    this.bodyOffset = this.sidebarWidth;
+    this.slideView(this.sidebarWidth);
 }
 
 SlidingView.prototype.unbindEvents = function() {
