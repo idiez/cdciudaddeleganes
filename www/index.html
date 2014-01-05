@@ -28,8 +28,8 @@
         <script src="js/jquery.animate-enhanced.js"></script>
         <script src="js/slidingview.js"></script>
         <link rel="stylesheet" href="css/slidingview.css" type="text/css" />
+        <link rel="stylesheet" href="css/cdlegapp.css" type="text/css" />
         <script>
-
             var slide;
 
             $(document).ready( function() {
@@ -38,35 +38,26 @@
                 $( "#body" ).load("html/next.html");   
             } );
         </script>
-        
-        <style>
-            #sidebar {
-                background-color: red;
-                padding:10px;
-            }
-            #body {
-                background-color: white;
-                padding:10px;
-            }
-        </style>
-    
     </head>
+
     <body>
     
-        <div class="slidingview_wrapper">
-            <div id="sidebar">
-                <ul>
-                    <li id="next">Próxima jornada</li>
-                    <li id="results">Resultados</li>
-                    <li id="table">Clasificación</li>
-                    <li id="scorers">Goleadores</li>
-                    <li id="schedule">Calendario</li>
-                    <li id="gallery">Galería</li>
-                    <li id="us">Quiénes somos</li>
+        <section class="slidingview_wrapper">
+            <nav id="sidebar">
+                <img class="badge" src="img/badge.png" alt=""></img>
+                <ul id="menulist" class="navbar">
+                    <li id="next" class="menu">Próxima jornada</li>
+                    <li id="results" class="menu">Resultados</li>
+                    <li id="table" class="menu">Clasificación</li>
+                    <li id="scorers" class="menu">Goleadores</li>
+                    <li id="schedule" class="menu">Calendario</li>
+                    <li id="gallery" class="menu">Galería</li>
+                    <li id="us" class="menu">Quiénes somos</li>
                 </ul>
-            </div>
-            <div id="body"></div>
-        </div>
+            </nav>
+            <article id="body"></article>
+
+        </section>
     
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
